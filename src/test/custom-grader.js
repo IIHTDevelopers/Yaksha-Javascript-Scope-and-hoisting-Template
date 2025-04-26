@@ -197,7 +197,7 @@ function checkScopeWithLetConst(ast) {
 
     if (!letConstScopeUsed) {
         result = 'Fail';
-        feedback.push("You must use 'let' or 'const' inside a function to demonstrate block scope.");
+        feedback.push("You must use 'let' & 'const' inside a function to demonstrate block scope.");
     }
 
     // Detailed logging of the check
