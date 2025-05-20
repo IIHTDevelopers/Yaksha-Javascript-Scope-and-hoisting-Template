@@ -73,7 +73,7 @@ function writeOutputFiles(result, fileType) {
         xml: "./yaksha-test-cases.xml"
     };
 
-    let resultStatus = result.status === 'Pass' ? 'PASS' : 'FAIL';
+    let resultStatus = result.status === 'Passed' ? 'PASS' : 'FAIL';
     let output = `${result.methodName}=${resultStatus}\n`;
 
     let outputFilePath = outputFiles[fileType];
@@ -84,7 +84,7 @@ function writeOutputFiles(result, fileType) {
 
 // Function to check hoisting behavior with var
 function checkHoistingWithVar(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let varHoistingUsed = false;
 
@@ -95,7 +95,7 @@ function checkHoistingWithVar(ast) {
     });
 
     if (!varHoistingUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must demonstrate hoisting with the 'var' keyword.");
     }
 
@@ -106,7 +106,7 @@ function checkHoistingWithVar(ast) {
         'HoistingWithVar',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -115,7 +115,7 @@ function checkHoistingWithVar(ast) {
 
 // Function to check hoisting behavior with let and const
 function checkHoistingWithLetConst(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let letConstHoistingUsed = false;
 
@@ -126,7 +126,7 @@ function checkHoistingWithLetConst(ast) {
     });
 
     if (!letConstHoistingUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must demonstrate the correct hoisting behavior with 'let' and 'const'.");
     }
 
@@ -137,7 +137,7 @@ function checkHoistingWithLetConst(ast) {
         'HoistingWithLetConst',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -146,7 +146,7 @@ function checkHoistingWithLetConst(ast) {
 
 // Function to check scope with var (should be local to the function)
 function checkScopeWithVar(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let varScopeUsed = false;
 
@@ -161,7 +161,7 @@ function checkScopeWithVar(ast) {
     });
 
     if (!varScopeUsed) {
-        result = 'Fail';
+        result = 'Failed';
         feedback.push("You must use 'var' inside a function to demonstrate local scope.");
     }
 
@@ -172,7 +172,7 @@ function checkScopeWithVar(ast) {
         'ScopeWithVar',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -181,7 +181,7 @@ function checkScopeWithVar(ast) {
 
 // Function to check scope with let and const (should be block-scoped)
 function checkScopeWithLetConst(ast) {
-    let result = 'Pass';
+    let result = 'Passed';
     let feedback = [];
     let letConstScopeUsed = false;
 
@@ -196,8 +196,8 @@ function checkScopeWithLetConst(ast) {
     });
 
     if (!letConstScopeUsed) {
-        result = 'Fail';
-        feedback.push("You must use 'let' & 'const' inside a function to demonstrate block scope.");
+        result = 'Failed';
+        feedback.push("You must use 'let' or 'const' inside a function to demonstrate block scope.");
     }
 
     // Detailed logging of the check
@@ -207,7 +207,7 @@ function checkScopeWithLetConst(ast) {
         'ScopeWithLetConst',
         'functional',
         1,
-        result === 'Pass' ? 1 : 0,
+        result === 'Passed' ? 1 : 0,
         result,
         true,
         feedback.join(', ')
@@ -254,7 +254,7 @@ function gradeAssignment() {
         console.log(resultsToSend);
 
         // Log the test result in yellow for pass and red for fail using ANSI codes
-        if (testCaseResult.status === 'Pass') {
+        if (testCaseResult.status === 'Passed') {
             console.log(`\x1b[33m${testCaseResult.methodName}: Pass\x1b[0m`); // Yellow for pass
         } else {
             console.log(`\x1b[31m${testCaseResult.methodName}: Fail\x1b[0m`); // Red for fail
